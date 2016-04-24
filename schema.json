@@ -1,0 +1,348 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "App",
+    "type": "object",
+    "definitions": {
+        "argsArray": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": [
+                            "autocomplete",
+                            "dropdown",
+                            "text",
+                            "number",
+                            "device"
+                        ]
+                    },
+                    "filter": {
+                        "type": "string"
+                    },
+                    "placeholder": {
+                        "$ref": "#/definitions/translatableObject"
+                    },
+                    "values": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "label": {
+                                    "$ref": "#/definitions/translatableObject"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "imageObject": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "large": {
+                    "type": "string",
+                    "description": "Location of a large image. eg. ./somedir/some-large-image.jpg"
+                },
+                "small": {
+                    "type": "string",
+                    "description": "Location of a small image. eg. ./somedir/some-small-image.jpg"
+                }
+            }  
+        },
+        "translatableObject": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "en": {
+                    "type": "string",
+                    "description": "English translation of the object."                         
+                },
+                "nl": {
+                    "type": "string",
+                    "description": "Dutch translation of the object."
+                }
+            }
+        },
+        "setting": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"  
+                },
+                "label": {
+                    "$ref": "#/definitions/translatableObject",
+                    "description": "Label of the setting."
+                },
+                "children": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/setting"
+                    }
+                }
+            } 
+        }
+    },
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string",
+            "description": "the schema to be used for validation of the json files"
+        },
+        "id": { 
+            "type": "string"
+        },
+        "category": {
+            "anyOf": [
+                {
+                    "type": "array",
+                    "items": { 
+                        "type": "string"                
+                    }
+                },
+                {
+                    "type": "string"
+                }
+            ]
+        },
+        "version": { 
+            "type": "string"
+        },
+        "compatibility": { 
+            "type": "string"
+        },
+        "name": { 
+            "$ref": "#/definitions/translatableObject",
+            "description": "Name of the Homey app."
+        },
+        "description": { 
+            "$ref": "#/definitions/translatableObject",
+            "description": "Description of the Homey app."
+        },
+        "author": { 
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "name" : {
+                    "type": "string"
+                },
+                "email" : {
+                    "type": "string"
+                },
+                "website" : {
+                    "type": "string"
+                }
+            }
+        },
+        "permissions": {
+            "type": "array",
+            "description": "all requested permissions of your app.",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "homey:manager:speech-output",
+                    "homey:manager:speech-input",
+                    "homey:manager:ledring"                 
+                ]
+            }
+        },
+        "speech": {
+            "type": "array",
+            "description": "all speech objects of your app.",
+            "items": {
+                "title": "connection",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "id": {
+                        "description": "Speech object",
+                        "type": "string"
+                    },
+                    "importance": {
+                        "description": "This is the importance of your speech object.",
+                        "type": "number"
+                    },
+                    "triggers": {
+                        "description": "Triggers of the speech object.",
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "en" : {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "nl" : {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+        
+                    }
+                }
+            }
+        },
+        "drivers": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "$ref": "#/definitions/translatableObject",
+                        "description": "Name of the driver."
+                    },
+                    "images": {
+                        "$ref": "#/definitions/imageObject"
+                    },
+                    "class": {
+                        "type": "string"
+                    },
+                    "capabilities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "pair": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "id" : {
+                                    "type": "string"
+                                },
+                                "template" : {
+                                    "type": "string"
+                                },
+                                "navigation": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "next": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "settings": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/definitions/setting"
+                        }
+                    }
+                }                
+            }
+        },
+        "images": {
+            "$ref": "#/definitions/imageObject"
+        },
+        "flow": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "triggers" : {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "id" : {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type" : "object"
+                            },
+                            "fluidArgs" : {
+                                "type": "boolean"
+                            },
+                            "args": {
+                                "$ref": "#/definitions/argsArray"
+                            },
+                            "tokens": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "$ref": "#/definitions/translatableObject"
+                                        },
+                                        "example": {
+                                            "$ref": "#/definitions/translatableObject"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "conditions" : {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "id" : {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type" : "object"
+                            },
+                            "args": {
+                                "$ref": "#/definitions/argsArray"
+                            }
+                        }
+                    }
+                },
+                "actions": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "id" : {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type" : "object"
+                            },
+                            "fluidArgs" : {
+                                "type": "boolean"
+                            },
+                            "args": {
+                                "$ref": "#/definitions/argsArray"
+                            }
+                        }
+                    }
+                }
+            }            
+        }
+    }
+}
