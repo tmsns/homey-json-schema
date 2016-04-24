@@ -95,39 +95,63 @@
                     }
                 }
             } 
+        },
+        "category": {
+            "type": "string",
+            "description": "The category of the Homey app, eg. video",
+            "enum": [
+                "appliances",
+                "climate",
+                "internet",
+                "lights",
+                "music",
+                "tools",
+                "security",
+                "video"
+            ]
         }
     },
     "additionalProperties": false,
+    "required": ["id", "version"],
     "properties": {
         "$schema": {
             "type": "string",
-            "description": "the schema to be used for validation of the json files"
+            "description": "The schema to be used for validation of this json file."
         },
         "id": { 
-            "type": "string"
+            "type": "string",
+            "default": "com.athom.hello",
+            "description": "ID of the Homey app. The app's ID should be a reverse domain name. For example, if you're creating an app for https://solarpanels.acme.org, your app ID will be org.acme.solarpanels."
         },
         "category": {
+            "default": "",
             "anyOf": [
                 {
                     "type": "array",
+                    "uniqueItems": true,
+                    "description": "The categories of the Homey app, eg. video, music. These will be used in the app store.",
                     "items": { 
-                        "type": "string"                
+                        "$ref": "#/definitions/category"            
                     }
                 },
                 {
-                    "type": "string"
+                    "$ref": "#/definitions/category"            
                 }
             ]
         },
         "version": { 
-            "type": "string"
+            "type": "string",
+            "default": "0.0.1",
+            "description": "Version of the Homey app. The version should be following SemVer rules: http://semver.org/."
         },
         "compatibility": { 
-            "type": "string"
+            "type": "string",
+            "description": "Compatibility rules of the app with the Homey version.",
+            "default": "0.x || 1.x"
         },
         "name": { 
             "$ref": "#/definitions/translatableObject",
-            "description": "Name of the Homey app."
+            "description": "Name of the Homey app as seen by users. It will be shown in the app store and in the settings > apps section of the Homey."
         },
         "description": { 
             "$ref": "#/definitions/translatableObject",
@@ -135,22 +159,26 @@
         },
         "author": { 
             "type": "object",
+            "description": "Author of the Homey app.",
             "additionalProperties": false,
             "properties": {
                 "name" : {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the author, eg. John Doe"
                 },
                 "email" : {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Email of the author, eg. john@acme.com"
                 },
                 "website" : {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Name of the author, eg. http://www.acme.com/"
                 }
             }
         },
         "permissions": {
             "type": "array",
-            "description": "all requested permissions of your app.",
+            "description": "All requested permissions of the Homey app.",
             "items": {
                 "type": "string",
                 "enum": [
@@ -162,7 +190,7 @@
         },
         "speech": {
             "type": "array",
-            "description": "all speech objects of your app.",
+            "description": "All speech objects of the Homey app.",
             "items": {
                 "title": "connection",
                 "type": "object",
