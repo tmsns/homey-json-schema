@@ -371,6 +371,49 @@
                     }
                 }
             }            
+        },
+        "contributors": {
+            "type": "object",
+            "description": "A list of contributors to the Homey app.",
+            "additionalProperties": false,
+            "properties": {
+                "developers": {
+                    "type": "array",
+                    "description": "A list of developers that contributed to the Homey app.",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "additionalProperties": false,
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "description": "Email of the developer.",
+                                "format": "email"
+                            }
+                        }
+                    }
+                },
+                "translators": {
+                    "type": "array",
+                    "description": "A list of translators that contributed to the Homey app.",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "additionalProperties": false,
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "description": "Email of the translator.",
+                                "format": "email"
+                            },
+                            "lang": {
+                                "type": "string",
+                                "description": "Language of the translation."
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
