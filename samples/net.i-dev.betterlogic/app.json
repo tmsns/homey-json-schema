@@ -1,0 +1,566 @@
+{
+  "$schema": "schema.json",
+  "id": "net.i-dev.betterlogic",
+  "name": {
+    "en": "Better Logic"
+  },
+  "description": {
+    "en": "A better logic app"
+  },
+  "version": "0.9.5",
+  "compatibility": "0.x || 1.x",
+  "author": {
+    "name": "Patrick Sannes",
+    "email": "patrick@i-dev.net"
+  },
+  "images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "category": "tools",
+  "dependencies": { },
+  "flow": {
+    "triggers": [
+      {
+        "id": "if_variable_changed",
+        "title": {
+          "en": "A variable changed"
+        },
+        "tokens": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Variable"
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Variable name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "if_variable_set",
+        "title": {
+          "en": "A variable is set"
+        },
+        "tokens": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Variable"
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Variable name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "if_number_variable_changed",
+        "title": {
+          "en": "A number variable changed"
+        },
+        "tokens": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Variable"
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "Variable name"
+            }
+          },
+          {
+            "name": "action",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "changed",
+                "label": { "en": "min. changed by" }
+              },
+              {
+                "id": "increased",
+                "label": { "en": "min. increased with" }
+              },
+              {
+                "id": "decreased",
+                "label": { "en": "min. decreased with" }
+              }
+            ],
+            "placeholder": {
+              "en": "Select action"
+            }
+          },
+          {
+            "name": "amount",
+            "type": "number",
+            "placeholder": {
+              "en": "Variable name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "if_one_of_variable_changed",
+        "title": {
+          "en": "One of these variables changed"
+        },
+        "tokens": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Variable"
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "Value"
+            }
+          }
+        ],
+        "args": [
+          {
+            "name": "variable",
+            "type": "text",
+            "placeholder": {
+              "en": "Var1, Var2, Var3"
+            }
+          }
+        ]
+      },
+      {
+        "id": "debug_any_variable_changed",
+        "title": {
+          "en": "Any variable changed (DEBUG)"
+        },
+        "tokens": [
+          {
+            "name": "variable",
+            "title": {
+              "en": "Variable"
+            },
+            "example": {
+              "en": "Variable"
+            }
+          },
+          {
+            "name": "value",
+            "title": {
+              "en": "Value"
+            },
+            "example": {
+              "en": "Value"
+            }
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "variable_contains",
+        "title": {
+          "en": "!{{Text contains|Text does not contain}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_starts_with",
+        "title": {
+          "en": "!{{Text starts with|Text does not start with}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_matches_string",
+        "title": {
+          "en": "!{{Text is exact|Text is not exactly}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_matches_number",
+        "title": {
+          "en": "!{{Number is exact|Number is not exactly}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_greater_than",
+        "title": {
+          "en": "!{{|not}} greater than"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_less_than",
+        "title": {
+          "en": "!{{|not}} less than"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "variable_is_equal",
+        "title": {
+          "en": "!{{is true|is false}}"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "expression",
+        "title": {
+          "en": "Math.js expression !{{is true|is false}}"
+        },
+        "args": [
+          {
+            "name": "expression",
+            "type": "text",
+            "placeholder": {
+              "en": "$v1$ > 100 and $v1$ < 200 and $b1$"
+            }
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "set_string_variable",
+        "title": {
+          "en": "Set string variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_number_variable",
+        "title": {
+          "en": "Set number variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "increment_number_variable",
+        "title": {
+          "en": "Increment number variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "decrement_number_variable",
+        "title": {
+          "en": "Decrement number variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "value",
+            "type": "number",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      },
+      {
+        "id": "execute_expression",
+        "title": {
+          "en": "Execute mathjs expression"
+        },
+        "args": [
+          {
+            "name": "expression",
+            "type": "text",
+            "placeholder": {
+              "en": "($n1$ * 42) + 1"
+            }
+          },
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_boolean_variable",
+        "title": {
+          "en": "Set boolean variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "boolean_value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "true",
+                "label": { "en": "True" }
+              },
+              {
+                "id": "false",
+                "label": { "en": "False" }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flip_boolean_variable",
+        "title": {
+          "en": "Flip boolean variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          }
+        ]
+      },
+      {
+        "id": "set_a_variable",
+        "title": {
+          "en": "Set a variable"
+        },
+        "args": [
+          {
+            "name": "variable",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "name"
+            }
+          },
+          {
+            "name": "value",
+            "type": "text",
+            "placeholder": {
+              "en": "value"
+            }
+          }
+        ]
+      }
+
+    ]
+  },
+  "drivers": [
+    {
+      "id": "bitflip",
+      "name": {
+        "en": "BitFlip"
+      },
+      "images": {
+        "large": "drivers/bitflip/assets/images/large.jpg",
+        "small": "drivers/bitflip/assets/images/small.jpg"
+      },
+      "class": "socket",
+      "capabilities": [ "onoff" ],
+      "pair": [
+        {
+          "id": "list_booleans",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_booleans"
+          }
+        },
+        {
+          "id": "add_booleans",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ]
+}
