@@ -190,39 +190,42 @@
         },
         "speech": {
             "type": "array",
-            "description": "All speech objects of the Homey app.",
+            "description": "List of speech events that the Homey app should support.",
+            "default": {},
             "items": {
-                "title": "connection",
                 "type": "object",
                 "additionalProperties": false,
                 "properties": {
                     "id": {
-                        "description": "Speech object",
+                        "description": "ID of the speech event, eg. weather",
                         "type": "string"
                     },
                     "importance": {
-                        "description": "This is the importance of your speech object.",
-                        "type": "number"
+                        "description": "Importance of the speech event. The importance tells Homey how likely it is that those specific words are meant for your app, on a scale of 0 to 1. Do not abuse this, as your app will incorrectly trigger often, which leads to it being deleted by the user, and maybe deleted by Athom from the app store.",
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 1
                     },
                     "triggers": {
-                        "description": "Triggers of the speech object.",
+                        "description": "List of triggers for the speech event.",
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
                             "en" : {
                                 "type": "array",
+                                "description": "List of English keywords to trigger on, eg. weather.",
                                 "items": {
                                     "type": "string"
                                 }
                             },
                             "nl" : {
                                 "type": "array",
+                                "description": "List of Dutch keywords to trigger on, eg. weer.",
                                 "items": {
                                     "type": "string"
                                 }
                             }
-                        }
-        
+                        }      
                     }
                 }
             }
