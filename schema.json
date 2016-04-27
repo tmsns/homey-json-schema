@@ -5,39 +5,69 @@
     "definitions": {
         "argsArray": {
             "type": "array",
+            "description": "List of arguments to be used in the card.",
             "items": {
                 "type": "object",
+                "description": "Argument for the card that will allow the user to input information.",
                 "additionalProperties": false,
                 "properties": {
                     "name": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "The name of the argument.",
+                        "default": "what_to_say"
                     },
                     "type": {
                         "type": "string",
+                        "description": "Type of the argument to render a control.",
+                        "default": "text",
                         "enum": [
                             "autocomplete",
                             "dropdown",
                             "text",
                             "number",
-                            "device"
+                            "device",
+                            "color"
                         ]
                     },
+                    "min": {
+                        "type": "number",
+                        "description": "Minimum allowed value for number-type arguments."
+                    },
+                    "max": {
+                        "type": "number",
+                        "description": "Maximum allowed value for number-type arguments."
+                    },
+                    "style": {
+                        "type": "object",
+                        "description": "Additional styling options for the control.",
+                        "properties": {
+                            "width": {
+                                "type": "string"
+                            }
+                        }
+                    },
                     "filter": {
-                        "type": "string"
+                        "type": "string",
+                        "default": "driver_uri=homey:app:com.coffee.machine",
+                        "description": "Querystring-like filter for device-type arguments, eg. driver_uri=homey:app:com.coffee.machine&driver_id=coffeemachine"
                     },
                     "placeholder": {
+                        "description": "Text to be shown without any data in the input.",
                         "$ref": "#/definitions/translatableObject"
                     },
                     "values": {
                         "type": "array",
+                        "description": "List of allowed values in dropdown-type and autocomplete-type arguments",
                         "items": {
                             "type": "object",
                             "additionalProperties": false,
                             "properties": {
                                 "id": {
-                                    "type": "string"
+                                    "type": "string",
+                                    "description": "Internal ID of the value."
                                 },
                                 "label": {
+                                    "description": "User viewable label of the value.",
                                     "$ref": "#/definitions/translatableObject"
                                 }
                             }
@@ -372,13 +402,16 @@
                                     "additionalProperties": false,
                                     "properties": {
                                         "name": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "description": "Internal name of the token."
                                         },
                                         "title": {
-                                            "$ref": "#/definitions/translatableObject"
+                                            "$ref": "#/definitions/translatableObject",
+                                            "description": "User viewable title of the token."
                                         },
                                         "example": {
-                                            "$ref": "#/definitions/translatableObject"
+                                            "$ref": "#/definitions/translatableObject",
+                                            "description": "Example value of the token."
                                         }
                                     }
                                 }
