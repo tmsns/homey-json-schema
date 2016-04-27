@@ -182,9 +182,18 @@
             "items": {
                 "type": "string",
                 "enum": [
-                    "homey:manager:speech-output",
-                    "homey:manager:speech-input",
-                    "homey:manager:ledring"                 
+                    /* no support for descriptions just yet: https://github.com/json-schema/json-schema/wiki/enumNames-(v5-proposal) */
+                    "homey:manager:alarm", /* View, create and cancel alarms */
+                    "homey:manager:devices", /* View, create and delete your devices */
+                    "homey:manager:geolocation", /* "View your Homey's location */
+                    "homey:manager:insights", /* "Read your insights */
+                    "homey:manager:ledring", /* "Control Homey's LED ring */
+                    "homey:manager:media", /* "Play and pause music  */
+                    "homey:manager:speech-input", /* "React to your speech, or ask a question  */
+                    "homey:manager:speech-output", /* "Let Homey say something  */
+                    "homey:wireless:433", /* "Send and receive on the 433.92 MHz frequency  */
+                    "homey:wireless:868", /* "Send and receive on the 868 MHz frequency  */
+                    "homey:wireless:nfc" /* "Read and write NFC tags */
                 ]
             }
         },
