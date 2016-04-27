@@ -63,6 +63,7 @@
         "translatableObject": {
             "type": "object",
             "additionalProperties": false,
+            "required": ["en"],
             "properties": {
                 "en": {
                     "type": "string",
@@ -124,7 +125,7 @@
         }
     },
     "additionalProperties": false,
-    "required": ["id", "version"],
+    "required": ["id", "name", "version", "compatibility"],
     "properties": {
         "$schema": {
             "type": "string",
@@ -133,7 +134,8 @@
         "id": { 
             "type": "string",
             "default": "com.athom.hello",
-            "description": "ID of the Homey app. The app's ID should be a reverse domain name. For example, if you're creating an app for https://solarpanels.acme.org, your app ID will be org.acme.solarpanels."
+            "description": "Internal ID of the Homey app. The app's ID should be a reverse domain name. For example, if you're creating an app for https://solarpanels.acme.org, your app ID will be org.acme.solarpanels.",
+            "pattern": "^[a-z0-9\\-](?=.*?\\.)[a-z0-9\\.\\-]{3,}[a-z0-9\\-]$"
         },
         "category": {
             "default": "",
@@ -216,9 +218,10 @@
             "items": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": ["id", "importance", "triggers"],
                 "properties": {
                     "id": {
-                        "description": "ID of the speech event, eg. weather",
+                        "description": "Internal ID of the speech event, eg. weather",
                         "type": "string"
                     },
                     "importance": {
@@ -231,6 +234,7 @@
                         "description": "List of triggers for the speech event.",
                         "type": "object",
                         "additionalProperties": false,
+                        "required": ["en"],
                         "properties": {
                             "en" : {
                                 "type": "array",
@@ -277,13 +281,15 @@
             "items": {
                 "type": "object",
                 "additionalProperties": false,
+                "required": ["id", "name", "class", "capabilities"],
                 "properties": {
                     "id": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Internal ID of the driver, eg. my-driver"
                     },
                     "name": {
                         "$ref": "#/definitions/translatableObject",
-                        "description": "Name of the driver."
+                        "description": "User viewable name of the driver."
                     },
                     "images": {
                         "$ref": "#/definitions/imageObject"
@@ -302,6 +308,7 @@
                         "items": {
                             "type": "object",
                             "additionalProperties": false,
+                            "required": ["id"],
                             "properties": {
                                 "id" : {
                                     "type": "string"
@@ -342,12 +349,15 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
+                        "required": ["id", "title"],
                         "properties": {
                             "id" : {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Internal ID of the trigger card."
                             },
                             "title": {
-                                "$ref": "#/definitions/translatableObject"
+                                "$ref": "#/definitions/translatableObject",
+                                "description": "User viewable title of the trigger card."
                             },
                             "fluidArgs" : {
                                 "type": "boolean"
@@ -381,12 +391,15 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
+                        "required": ["id", "title"],
                         "properties": {
                             "id" : {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Internal ID of the condition card."
                             },
                             "title": {
-                                "$ref": "#/definitions/translatableObject"
+                                "$ref": "#/definitions/translatableObject",
+                                "description": "User viewable title of the condition card."
                             },
                             "args": {
                                 "$ref": "#/definitions/argsArray"
@@ -399,12 +412,15 @@
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
+                        "required": ["id", "title"],
                         "properties": {
                             "id" : {
-                                "type": "string"
+                                "type": "string",
+                                "description": "Internal ID of the action card."
                             },
                             "title": {
-                                "$ref": "#/definitions/translatableObject"
+                                "$ref": "#/definitions/translatableObject",
+                                "description": "User viewable title of the action card."
                             },
                             "fluidArgs" : {
                                 "type": "boolean"
