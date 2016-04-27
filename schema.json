@@ -475,6 +475,17 @@
                     }
                 }
             }
+        },
+        "dependencies": {
+            "type": "object",
+            "description": "A list of NPM packages the app is depending on, eg. \"node-hue-api\": \"1.1.*\"",
+            "patternProperties": {
+                ".*": {
+                    "type": "string",
+                    "default": "1.0.0",
+                    "description": "SemVer version of the NPM package."
+                }
+            }
         }
     }
 }
