@@ -71,6 +71,18 @@
                 "nl": {
                     "type": "string",
                     "description": "Dutch translation of the object."
+                },
+                "de": {
+                    "type": "string",
+                    "description": "German translation of the object."
+                },
+                "es": {
+                    "type": "string",
+                    "description": "Spanish translation of the object."
+                },
+                "fr": {
+                    "type": "string",
+                    "description": "French translation of the object."
                 }
             }
         },
@@ -233,6 +245,27 @@
                                 "items": {
                                     "type": "string"
                                 }
+                            },
+                            "de" : {
+                                "type": "array",
+                                "description": "List of German keywords to trigger on, eg. wetter.",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "es" : {
+                                "type": "array",
+                                "description": "List of Spanish keywords to trigger on, eg. clima.",
+                                "items": {
+                                    "type": "string"
+                                }
+                            },
+                            "fr" : {
+                                "type": "array",
+                                "description": "List of French keywords to trigger on, eg. météo.",
+                                "items": {
+                                    "type": "string"
+                                }
                             }
                         }      
                     }
@@ -314,7 +347,7 @@
                                 "type": "string"
                             },
                             "title": {
-                                "type" : "object"
+                                "$ref": "#/definitions/translatableObject"
                             },
                             "fluidArgs" : {
                                 "type": "boolean"
@@ -353,7 +386,7 @@
                                 "type": "string"
                             },
                             "title": {
-                                "type" : "object"
+                                "$ref": "#/definitions/translatableObject"
                             },
                             "args": {
                                 "$ref": "#/definitions/argsArray"
@@ -371,7 +404,7 @@
                                 "type": "string"
                             },
                             "title": {
-                                "type" : "object"
+                                "$ref": "#/definitions/translatableObject"
                             },
                             "fluidArgs" : {
                                 "type": "boolean"
