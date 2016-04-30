@@ -170,6 +170,7 @@
         },
         "category": {
             "default": "",
+            "description": "Category of the Homey app, eg. \"Internet\". This can also be a list categories.",
             "anyOf": [
                 {
                     "type": "array",
@@ -187,7 +188,7 @@
         "version": { 
             "type": "string",
             "default": "0.0.1",
-            "description": "Version of the Homey app. The version should be following SemVer rules: http://semver.org/."
+            "description": "Version of the Homey app, eg 2.0.1. The version should be following SemVer rules: http://semver.org/."
         },
         "compatibility": { 
             "type": "string",
@@ -223,7 +224,7 @@
         },
         "permissions": {
             "type": "array",
-            "description": "All requested permissions of the Homey app.",
+            "description": "List of requested permissions by the Homey app.",
             "items": {
                 "type": "string",
                 "enum": [
@@ -309,6 +310,7 @@
         },
         "drivers": {
             "type": "array",
+            "description": "List of drivers supported by the Homey app.",
             "items": {
                 "type": "object",
                 "additionalProperties": false,
@@ -324,13 +326,15 @@
                         "description": "User viewable name of the driver."
                     },
                     "images": {
-                        "$ref": "#/definitions/imageObject"
+                        "$ref": "#/definitions/imageObject",
+                        "description": "Paths to the images used for the driver."
                     },
                     "class": {
                         "type": "string"
                     },
                     "capabilities": {
                         "type": "array",
+                        "description": "List of capabilities of the driver.",
                         "items": {
                             "type": "string"
                         }
@@ -371,17 +375,21 @@
             }
         },
         "images": {
-            "$ref": "#/definitions/imageObject"
+            "$ref": "#/definitions/imageObject",
+            "description": "Paths to the images used for the Homey app."
         },
         "flow": {
             "type": "object",
+            "description": "The flow cards supported by the Homey app.",
             "additionalProperties": false,
             "properties": {
                 "triggers" : {
                     "type": "array",
+                    "description": "List of trigger cards supported by the Homey app in the flow editor.",
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
+                        "description": "Trigger card for the flow editor.",
                         "required": ["id", "title"],
                         "default": {},
                         "properties": {
@@ -426,10 +434,12 @@
                 },
                 "conditions" : {
                     "type": "array",
+                    "description": "List of condition cards supported by the Homey app in the flow editor.",
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
                         "required": ["id", "title"],
+                        "description": "Condition card for the flow editor.",
                         "default": {},
                         "properties": {
                             "id" : {
@@ -448,10 +458,12 @@
                 },
                 "actions": {
                     "type": "array",
+                    "description": "List of action cards supported by the Homey app in the flow editor.",
                     "items": {
                         "type": "object",
                         "additionalProperties": false,
                         "required": ["id", "title"],
+                        "description": "Action card for the flow editor.",
                         "default": {},
                         "properties": {
                             "id" : {
