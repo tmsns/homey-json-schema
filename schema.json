@@ -10,6 +10,7 @@
                 "type": "object",
                 "description": "Argument for the card that will allow the user to input information.",
                 "additionalProperties": false,
+                "default": {},
                 "properties": {
                     "name": {
                         "type": "string",
@@ -244,11 +245,11 @@
         "speech": {
             "type": "array",
             "description": "List of speech events that the Homey app should support.",
-            "default": {},
             "items": {
                 "type": "object",
                 "additionalProperties": false,
                 "required": ["id", "importance", "triggers"],
+                "default": {},
                 "properties": {
                     "id": {
                         "description": "Internal ID of the speech event, eg. weather",
@@ -312,6 +313,7 @@
                 "type": "object",
                 "additionalProperties": false,
                 "required": ["id", "name", "class", "capabilities"],
+                "default": {},
                 "properties": {
                     "id": {
                         "type": "string",
@@ -339,6 +341,7 @@
                             "type": "object",
                             "additionalProperties": false,
                             "required": ["id"],
+                            "default": {},
                             "properties": {
                                 "id" : {
                                     "type": "string"
@@ -380,6 +383,7 @@
                         "type": "object",
                         "additionalProperties": false,
                         "required": ["id", "title"],
+                        "default": {},
                         "properties": {
                             "id" : {
                                 "type": "string",
@@ -400,6 +404,7 @@
                                 "items": {
                                     "type": "object",
                                     "additionalProperties": false,
+                                    "default": {},
                                     "properties": {
                                         "name": {
                                             "type": "string",
@@ -425,6 +430,7 @@
                         "type": "object",
                         "additionalProperties": false,
                         "required": ["id", "title"],
+                        "default": {},
                         "properties": {
                             "id" : {
                                 "type": "string",
@@ -446,6 +452,7 @@
                         "type": "object",
                         "additionalProperties": false,
                         "required": ["id", "title"],
+                        "default": {},
                         "properties": {
                             "id" : {
                                 "type": "string",
