@@ -330,13 +330,95 @@
                         "description": "Paths to the images used for the driver."
                     },
                     "class": {
-                        "type": "string"
+                        "description": "Class of the driver/device. This will define a list of possible capabilities the app can support. eg. light => \"dim\", \"onoff\"",
+                        "anyOf": [
+                            {
+                                "type": "string",
+                                "enum": [
+                                    "button",
+                                    "coffeemachine",
+                                    "windowcoverings",
+                                    "doorbell",
+                                    "fan",
+                                    "heater",
+                                    "homealarm",
+                                    "kettle",
+                                    "light",
+                                    "lock",
+                                    "other",
+                                    "sensor",
+                                    "thermostat",
+                                    "vacuumcleaner",
+                                    "socket"
+                                ]  
+                            },
+                            {
+                                "type": "string"
+                            }
+                        ]                      
                     },
                     "capabilities": {
                         "type": "array",
                         "description": "List of capabilities of the driver.",
                         "items": {
-                            "type": "string"
+                            "default": "onoff",
+                            "anyOf": [
+                                {
+                                    "type": "string",
+                                    "enum": [
+                                        "onoff",
+                                        "alarm_generic",
+                                        "target_temperature",
+                                        "measure_temperature",
+                                        "dim",
+                                        "windowcoverings_state",
+                                        "homealarm_state",
+                                        "alarm_tamper",
+                                        "light_hue",
+                                        "light_saturation",
+                                        "light_temperature",
+                                        "locked",
+                                        "lock_mode",
+                                        "measure_battery",
+                                        "measure_co",
+                                        "measure_co2",
+                                        "measure_humidity",
+                                        "measure_pressure",
+                                        "measure_noise",
+                                        "measure_rain",
+                                        "measure_wind_strength",
+                                        "measure_wind_angle",
+                                        "measure_gust_strength",
+                                        "measure_gust_angle",
+                                        "measure_power",
+                                        "measure_luminance",
+                                        "alarm_contact",
+                                        "alarm_co",
+                                        "alarm_co2",
+                                        "alarm_fire",
+                                        "alarm_smoke",
+                                        "alarm_motion",
+                                        "alarm_night",
+                                        "alarm_battery",
+                                        "meter_power",
+                                        "meter_water",
+                                        "meter_gas",
+                                        "source_select",
+                                        "volume_set",
+                                        "volume_up",
+                                        "volume_down",
+                                        "volume_mute",
+                                        "stream_http",
+                                        "stream_bluetooth",                 
+                                        "thermostat_mode",
+                                        "thermostat_state",
+                                        "vacuumcleaner_state"         
+                                    ]       
+                                },
+                                {
+                                    "type": "string"
+                                }
+                            ]
                         }
                     },
                     "pair": {
